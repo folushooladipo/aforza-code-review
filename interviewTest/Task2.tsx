@@ -8,12 +8,17 @@
  There are issues with this implementation. Can you see them?
 */
 import CheckBox from "@react-native-community/checkbox";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { isTablet } from "react-native-device-info";
 
 type Props = {
-  onSubmit: () => void;
+  onSubmit: (options: {
+    userName: string,
+    password: string,
+    // This should default to false.
+    shouldRememberUser?: boolean
+  }) => void;
 };
 
 export const LoginForm = (props: Props) => {
@@ -28,6 +33,13 @@ export const LoginForm = (props: Props) => {
   const onPasswordChange = (password: string) => setPassword(password);
 
   const onRememberChange = (remember: boolean) => setRememberMe(remember);
+  const onFormSubmit = useCallback(() => {
+    onSubmit({
+      userName,
+      password, 
+      shouldRememberUser: rememberMe,
+    })
+  }, [onSubmit, userName, password, rememberMe])
 
   return (
     <View>
@@ -49,7 +61,7 @@ export const LoginForm = (props: Props) => {
       <Text>Remember me:</Text>
       <CheckBox value={rememberMe} onValueChange={onRememberChange} />
 
-      <Button title="Submit form" onPress={onSubmit} />
+      <Button title="Submit form" onPress={onFormSubmit} />
     </View>
   );
 };
