@@ -23,11 +23,15 @@ export const LoginDisplay = (props: Props) => {
   const { loginCount } = props;
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const shouldShowWelcomeBack = isLoggedIn && loginCount > 0;
 
   useEffect(() => {
     EventEmitter.addListener("signInSuccess", () => setIsLoggedIn(true));
 
     EventEmitter.addListener("signOutSuccess", () => setIsLoggedIn(false));
+    return () => {
+      EventEmitter.removeEventListener()
+    }
   }, []);
 
   useEffect(() => {
@@ -38,8 +42,7 @@ export const LoginDisplay = (props: Props) => {
     <View>
       <Text>Login status:</Text>
       <Text>{isLoggedIn}</Text>
-
-      {loginCount && <Text>Welcome back!</Text>}
+      {shouldShowWelcomeBack ? <Text>Welcome back!</Text> : null}
     </View>
   );
 };
