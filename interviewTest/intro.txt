@@ -1,0 +1,25 @@
+
+AFORZA TECHNICAL TEST - REACT NATIVE CANDIDATE 
+
+The files in this directory are 3 simple React Native components.
+
+Each file has a description of the intended functionality. HOWEVER...
+There are several issues with the implementation!  
+
+We would like you to code review these files and be ready to discuss your findings and any comments you might have :)
+
+For anything you find, tell us the following:
+1. What is the issue?
+2. Why is it a problem?
+3. How could you fix it?
+
+Things to think about:
+
+1. Are there any outright errors?
+2. Is there going to be any unexpected or unpredictable behaviour?
+3. Is this best practise? If not, why not?
+4. How easy will this be to maintain?
+5. Is the code fragile for any reason?
+6. Is there anything you think we should add or take out?
+
+Tip: Feel free to add comments to the code to help highlight flaws and explain the issues, and how you could fix them.
